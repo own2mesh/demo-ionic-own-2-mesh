@@ -25,7 +25,7 @@ Plugin for capacitor to open locks from OKLOK
 # Ionic
 
 #### Demo App
-You can find the demo app here: 
+You can find the demo app here: https://gitlab.edvsz.hs-osnabrueck.de/own2mesh/demo-ionic-own-2-mesh
 
 #### Start
 
@@ -156,7 +156,6 @@ Result by success: {"value":"Hello back from own-2-mesh plugin!"}
 > ```
 > echo(options: { value: string }): Promise<{ value: string }>;
 > ```
-
 > ###### Example
 > ```typescript
 > echo() {
@@ -178,7 +177,6 @@ Result by success: {"value":"Hello back from own-2-mesh plugin!"}
 > ```
 > open(options: { name: string, address: string, secret: string[], pw: string[] }): Promise<{ opened: boolean }>;
 > ```
-
 > ###### Example
 > ```typescript
 > openLock() {
@@ -203,7 +201,6 @@ Result by success: {"value":"Hello back from own-2-mesh plugin!"}
 > ```
 > battery_status(options: { name: string, address: string, secret: string[] }): Promise<{ percentage: number }>;
 > ```
-
 > ###### Example
 > ```typescript
 > batteryInfo() {
@@ -226,7 +223,6 @@ Result by success: {"value":"Hello back from own-2-mesh plugin!"}
 > ```
 > lock_status(options: { name: string, address: string, secret: string[] }): Promise<{ locked: boolean }>;
 > ```
-
 > ###### Example
 > ```typescript
 > lockStatus() {
@@ -250,7 +246,6 @@ Result by success: {"value":"Hello back from own-2-mesh plugin!"}
 > ```
 > close(options: { name: string, address: string, secret: string[] }): Promise<{ closed: boolean }>;
 > ```
-
 > ###### Example
 > ```typescript
 > closeLock() {
