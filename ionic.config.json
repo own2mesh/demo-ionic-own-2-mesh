@@ -1,0 +1,7 @@
+{
+  "name": "own-2-mesh-plugin-demo-local-2",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

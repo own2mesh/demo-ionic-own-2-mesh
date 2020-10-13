@@ -1,0 +1,90 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Own-2-Mesh
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Own-2-Mesh</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle *ngIf="echoStatus !== undefined">Status: {{echoStatus}}</ion-card-subtitle>
+      <ion-card-title>Echo</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <ion-button (click)="echo()" expand="block">
+        <ion-icon slot="start" size="large" name="megaphone-outline"></ion-icon>
+        Echo
+      </ion-button>        
+    </ion-card-content>
+  </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle *ngIf="openLockStatus !== undefined">Status: {{openLockStatus}}</ion-card-subtitle>
+        <ion-card-title>Open lock</ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content>
+        <ion-button (click)="openLock()" expand="block">
+          <ion-icon slot="start" size="large" name="lock-open-outline"></ion-icon>
+          Open lock
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle *ngIf="batteryStatus !== undefined">Status: {{batteryStatus}}%</ion-card-subtitle>
+        <ion-card-title>Batterie</ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content>
+        <ion-button (click)="batteryInfo()" expand="block">
+          <ion-icon slot="start" size="large" name="battery-half-outline"></ion-icon>
+          Batterie Status
+        </ion-button>        
+      </ion-card-content>
+    </ion-card>
+
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle *ngIf="lockedStatus !== undefined">Status: {{lockedStatus}}</ion-card-subtitle>
+        <ion-card-title>Lock Status</ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content>
+        <ion-button (click)="lockStatus()" expand="block">
+          <ion-icon slot="start" size="large" name="stats-chart-outline"></ion-icon>
+          Lock Status
+        </ion-button>        
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle *ngIf="closeLockStatus !== undefined">Status: {{closeLockStatus}}</ion-card-subtitle>
+        <ion-card-title>Close lock</ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content>
+        <ion-button (click)="closeLock()" expand="block">
+          <ion-icon slot="start" size="large" name="lock-closed-outline"></ion-icon>
+          Close lock
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+
+</ion-content>
