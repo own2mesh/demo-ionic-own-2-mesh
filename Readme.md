@@ -8,7 +8,8 @@ Plugin for capacitor to open locks from OKLOK
 >
 #
 ## Info
-* You must provide a lock name *(IOS doesn't support MAC-Address with BLE)*
+* You must provide a lock name on IOS *(IOS doesn't support MAC-Address with BLE)*
+* You must provide a lock address on Android.
 * This plugin has no web implementation. Test only on your phone.
 
 > Import the plugin
@@ -89,9 +90,13 @@ You can find the demo app here: https://gitlab.edvsz.hs-osnabrueck.de/own2mesh/d
 > ##### Sync
 > `npx cap sync`
 
-
 > ##### Open your app
 > `npx cap open android`
+#
+
+> ##### Add our installed plugin to the MainActivity - init-function
+> In code (MainActivity.java - this.init):
+> `add(Own2MeshOkLokPlugin.class);`
 #
 
 ## Build your Ionic app
@@ -105,7 +110,7 @@ You can find the demo app here: https://gitlab.edvsz.hs-osnabrueck.de/own2mesh/d
 > ```
 > ionic build
 > npx cap sync
-> npx cap open "plattform"
+> npx cap open "platform"
 > ```
 
 
@@ -128,7 +133,7 @@ You can find the demo app here: https://gitlab.edvsz.hs-osnabrueck.de/own2mesh/d
 
 ```typescript
 lockName = {
-    name: string, // Phisical lock name
+    name: string, // Physical lock name
     address: string, // MAC Address (for android)
     secret: string[16], // lock key as hexadecimal integer literal string array[16 items] (Begins with the 0 digit followed by either an x or X, followed by any combination of the digits 0 through 9 and the letters a through f or A through F.)
     pw: string[6] // password as hexadecimal integer literal string array[6 items] (Begins with the 0 digit followed by either an x or X, followed by any combination of the digits 0 through 9 and the letters a through f or A through F.)
