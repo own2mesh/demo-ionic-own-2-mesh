@@ -94,7 +94,10 @@ You can find the demo app here: https://gitlab.edvsz.hs-osnabrueck.de/own2mesh/d
 > `npx cap open android`
 #
 
-> ##### Add our installed plugin to the MainActivity - init-function
+> ##### Add our installed plugin to the MainActivity
+>
+> File Path: *myApp/android/app/src/main/java/io/ionic/starter/MainActivity.java*
+>
 > `import de.own2mesh.plugin.oklok.Own2MeshOkLokPlugin;`
 >
 > `add(Own2MeshOkLokPlugin.class);`
