@@ -96,6 +96,7 @@ You can find the demo app here: https://gitlab.edvsz.hs-osnabrueck.de/own2mesh/d
 
 > ##### Add our installed plugin to the MainActivity - init-function
 > `import de.own2mesh.plugin.oklok.Own2MeshOkLokPlugin;`
+>
 > `add(Own2MeshOkLokPlugin.class);`
 >
 > The MainActivity.java should look like this:
