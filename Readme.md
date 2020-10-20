@@ -95,8 +95,36 @@ You can find the demo app here: https://gitlab.edvsz.hs-osnabrueck.de/own2mesh/d
 #
 
 > ##### Add our installed plugin to the MainActivity - init-function
-> In code (MainActivity.java - this.init):
+> `import de.own2mesh.plugin.oklok.Own2MeshOkLokPlugin;`
 > `add(Own2MeshOkLokPlugin.class);`
+>
+> The MainActivity.java should look like this:
+> ```java
+> package io.ionic.starter;
+>
+>import android.os.Bundle;
+>
+> import com.getcapacitor.BridgeActivity;
+> import com.getcapacitor.Plugin;
+>
+> import java.util.ArrayList;
+>
+> import de.own2mesh.plugin.oklok.Own2MeshOkLokPlugin;
+>
+> public class MainActivity extends BridgeActivity {
+>  @Override
+>  public void onCreate(Bundle savedInstanceState) {
+>    super.onCreate(savedInstanceState);
+>
+>    // Initializes the Bridge
+>    this.init(savedInstanceState, new ArrayList<Class<? extends Plugin>>() {{
+>      // Additional plugins you've installed go here
+>      // Ex: add(TotallyAwesomePlugin.class);
+>      add(Own2MeshOkLokPlugin.class);
+>    }});
+>  }
+> }
+>```
 #
 
 ## Build your Ionic app
@@ -140,11 +168,13 @@ lockName = {
 }
 ```
 
+> __Important__ Hex Strings have to start with a leading 0 if they are single digit
+
 ```typescript
 lockOKGSS101 = {
     name: 'OKGSS101',
     address: 'F8:45:65:64:CC:B4',
-    secret: ['0x4c', '0x5f', '0xc', '0x3c', '0x4c', '0x28', '0x53', '0x24', '0x23', '0x36', '0x12', '0x5b', '0x33', '0x59', '0x21', '0x4'],
+    secret: ['0x4c', '0x5f', '0x0c', '0x3c', '0x4c', '0x28', '0x53', '0x24', '0x23', '0x36', '0x12', '0x5b', '0x33', '0x59', '0x21', '0x04'],
     pw: ['0x33', '0x32', '0x31', '0x39', '0x33', '0x37'] 
 }
 ```
