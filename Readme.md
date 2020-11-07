@@ -29,8 +29,10 @@ Plugin for capacitor to open locks from OKLOK
 You can find the demo app here: https://gitlab.edvsz.hs-osnabrueck.de/own2mesh/demo-ionic-own-2-mesh
 * Clone Demo App
 * install Dependencies
-> `git clone https://gitlab.edvsz.hs-osnabrueck.de/own2mesh/demo-ionic-own-2-mesh.git`
-> `npm i`
+> ```
+> git clone https://gitlab.edvsz.hs-osnabrueck.de/own2mesh/demo-ionic-own-2-mesh.git
+> npm i
+> ```
 * or create your own App
 
 #### Start
