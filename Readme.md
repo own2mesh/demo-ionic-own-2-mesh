@@ -31,6 +31,7 @@ You can find the demo app here: https://gitlab.edvsz.hs-osnabrueck.de/own2mesh/d
 * install Dependencies
 > ```
 > git clone https://gitlab.edvsz.hs-osnabrueck.de/own2mesh/demo-ionic-own-2-mesh.git
+> cd ./demo-ionic-own-2-mesh
 > npm i
 > ```
 * or create your own App
