@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
-import {Plugins} from '@capacitor/core';
-const {Own2MeshOkLokPlugin} = Plugins;
+import { Plugins } from '@capacitor/core';
+const { Own2MeshOkLokPlugin } = Plugins;
 
 @Component({
   selector: 'app-home',
@@ -25,7 +25,7 @@ export class HomePage {
   lockedStatus: string;
   closeLockStatus: string;
 
-  constructor() {}
+  constructor() { }
 
   /**
    * Test Methode
@@ -37,9 +37,9 @@ export class HomePage {
    */
   echo() {
     Own2MeshOkLokPlugin.echo({
-        value: 'Hello Own2MeshOkLokPlugin!'
+      value: 'Hello Own2MeshOkLokPlugin!'
     }).then(result => {
-        this.echoStatus = result.value;
+      this.echoStatus = result.value;
     });
   }
 
@@ -50,12 +50,12 @@ export class HomePage {
    */
   openLock() {
     Own2MeshOkLokPlugin.open({
-        name: this.lockOKGSS101.name,
-        address: this.lockOKGSS101.address,
-        secret: this.lockOKGSS101.secret,
-        pw: this.lockOKGSS101.pw
+      name: this.lockOKGSS101.name,
+      address: this.lockOKGSS101.address,
+      secret: this.lockOKGSS101.secret,
+      pw: this.lockOKGSS101.pw
     }).then(result => {
-        this.openLockStatus = result.opened;
+      this.openLockStatus = result.opened;
     });
   }
 
@@ -100,12 +100,12 @@ export class HomePage {
    */
   closeLock() {
     Own2MeshOkLokPlugin.close({
-        name: this.lockOKGSS101.name,
-        address: this.lockOKGSS101.address,
-        secret: this.lockOKGSS101.secret,
-        pw: this.lockOKGSS101.pw
+      name: this.lockOKGSS101.name,
+      address: this.lockOKGSS101.address,
+      secret: this.lockOKGSS101.secret,
+      pw: this.lockOKGSS101.pw
     }).then(result => {
-        this.openLockStatus = result.closed;
+      this.openLockStatus = result.closed;
     });
   }
 }
