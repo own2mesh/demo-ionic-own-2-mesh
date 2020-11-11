@@ -44,7 +44,7 @@ export class HomePage implements OnInit {
   echo() {
     Own2MeshOkLokPlugin.echo({
       value: 'Hello Own2MeshOkLokPlugin!'
-    }).then(result => {
+    }).then((result: { value: string; }) => {
       this.echoStatus = result.value;
     });
   }
@@ -59,26 +59,20 @@ export class HomePage implements OnInit {
     Own2MeshOkLokPlugin.open({
       name: this.lock.id,
       address: this.lock.mac,
-      secret: this.lock.secretHexaDecimal,
+      secret: this.lock.secret,
       pw: this.lock.passwordHexaDecimal
-    }).then(result => {
+    }).then((result: { opened: boolean }) => {
       console.log('result', result);
-      this.openLockStatus = result.opened;
-    }, error => {
-      console.log('error', error);
-      alert(error);
-    }, f => {
-      console.log('finally', f);
-    }).catch(() => {
-      console.log('error');
+      this.openLockStatus = 'open';
+    }, (error: string) => {
+      console.error(error);
+      this.openLockStatus = error;
     });
   }
 
   /**
    * Get battery percentage
-   * 
    * INFO: Some locks don't support this. They will always return {"percentage":0}
-   * 
    * Result: {"percentage":number}
    */
   batteryInfo() {
