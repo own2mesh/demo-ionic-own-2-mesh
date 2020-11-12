@@ -1,6 +1,6 @@
 {
   "appId": "io.ionic.starter",
-  "appName": "own-2-mesh-plugin-demo-local-2",
+  "appName": "Own2Mesh Demo",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",
