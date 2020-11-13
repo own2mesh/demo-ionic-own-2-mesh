@@ -4,9 +4,9 @@ Demo App for own2mesh capacitor plugin.
 Find the plugin here: https://www.npmjs.com/package/own2mesh-capacitor-plugin-oklok
 #
 ##### Table of Contents  
-* [Install](#install). 
-* [Add a plattform](#add-a-plattform). 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* [iOS](#ios). 
+* [Install](#install)  
+* [Add a plattform](#add-a-plattform)  
+* [iOS](#ios)  
 
 ** [Android](#android)
 
