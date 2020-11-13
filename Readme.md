@@ -6,22 +6,19 @@ Find the plugin here: https://www.npmjs.com/package/own2mesh-capacitor-plugin-ok
 ##### Table of Contents  
 * [Install](#install)  
 
-
 * [Add a plattform](#add-a-platform)  
-* [iOS](#ios)  
-* [Android](#android)
-
+    * [iOS](#ios)  
+    * [Android](#android)
 
 * [Usage](#usage)
-* [Import](#import)
-* [Example lock](#example-lock)
-
+    * [Import](#import)
+    * [Example lock](#example-lock)
 
 * [Methods](#methods)
-* [echo()](#echo)
-* [battery_status()](#battery_status)
-* [lock_status()](#lock_status)
-* [close()](#close)
+    * [echo()](#echo)
+    * [battery_status()](#battery_status)
+    * [lock_status()](#lock_status)
+    * [close()](#close)
 
 ## Install
 You can find the demo app here: https://gitlab.edvsz.hs-osnabrueck.de/own2mesh/demo-ionic-own-2-mesh
