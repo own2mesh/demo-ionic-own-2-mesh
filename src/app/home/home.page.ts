@@ -59,7 +59,7 @@ export class HomePage implements OnInit {
     Own2MeshOkLokPlugin.open({
       name: this.lock.id,
       address: this.lock.mac,
-      secret: this.lock.secret,
+      secret: this.lock.secretHexaDecimal,
       pw: this.lock.passwordHexaDecimal
     }).then((result: { opened: boolean }) => {
       console.log('result', result);
