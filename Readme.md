@@ -1,31 +1,23 @@
-# Own2Mesh - Capacitor plugin OKLOK 
-Plugin for capacitor to open locks from OKLOK
+# Own2Mesh - Ionic Demo App
+Demo App for own2mesh capacitor plugin.
 
+Find the plugin here: https://www.npmjs.com/package/own2mesh-capacitor-plugin-oklok
 #
+##### Table of Contents  
+* [Install](#install)  
+* [Add a plattform](#add-a-platform)  
+    * [iOS](#ios)  
+    * [Android](#android)
+* [Usage](#usage)
+    * [Import](#import)
+    * [Example lock](#example-lock)
+* [Methods](#methods)
+    * [echo()](#echo)
+    * [battery_status()](#battery_status)
+    * [lock_status()](#lock_status)
+    * [close()](#close)
+
 ## Install
-* Install own2mesh-capacitor-plugin-oklok
-> `npm i own2mesh-capacitor-plugin-oklok`
->
-#
-## Info
-* You must provide a lock name on IOS *(IOS doesn't support MAC-Address with BLE)*
-* You must provide a lock address on Android.
-* This plugin has no web implementation. Test only on your phone.
-
-> Import the plugin
->```typescript
-> import {Plugins} from '@capacitor/core';
-> const {Own2MeshOkLokPlugin} = Plugins;
-> ```
-> How to use a [methode](#Methods)
-> ```typescript
-> Own2MeshOkLokPlugin.theMethodeYouLike();
->```
-#
-
-# Ionic
-
-#### Demo App
 You can find the demo app here: https://gitlab.edvsz.hs-osnabrueck.de/own2mesh/demo-ionic-own-2-mesh
 * Clone Demo App
 * install Dependencies
@@ -36,7 +28,7 @@ You can find the demo app here: https://gitlab.edvsz.hs-osnabrueck.de/own2mesh/d
 > ```
 * or create your own App
 
-#### Start
+#### Create your own
 
 > Start with a new ionic app
 > ```
