@@ -1,5 +1,5 @@
 {
-  "appId": "io.ionic.starter",
+  "appId": "de.own2mesh.own2mesh-demo",
   "appName": "Own2Mesh Demo",
   "bundledWebRuntime": false,
   "npmClient": "npm",
