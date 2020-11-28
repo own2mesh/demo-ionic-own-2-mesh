@@ -13,7 +13,8 @@ const { Own2MeshOkLokPlugin } = Plugins;
 export class HomePage implements OnInit {
 
   // Example Lock
-  private lock: Lock;
+  public lock: Lock;
+  public locks: Lock[];
 
   // Status messages
   openLockStatus: string;
@@ -30,6 +31,9 @@ export class HomePage implements OnInit {
     this.lockService.getLock('AUAS00000014').then((lock) => {
       this.lock = lock;
       console.log(this.lock);
+    });
+    this.lockService.getLocks().then((locks) => {
+      this.locks = locks;
     });
   }
 
@@ -55,7 +59,7 @@ export class HomePage implements OnInit {
    * Result: {"opened":boolean}
    */
   openLock() {
-    console.log('try to open...');
+    console.log('try to open lock ' + this.lock.id + '...');
     Own2MeshOkLokPlugin.open({
       name: this.lock.id,
       address: this.lock.mac,
@@ -116,5 +120,9 @@ export class HomePage implements OnInit {
     }).then(result => {
       this.openLockStatus = result.closed;
     });
+  }
+
+  select(l: Lock) {
+    this.lock = this.locks.find(lock => lock.id === l.id);
   }
 }
