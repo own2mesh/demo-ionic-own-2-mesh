@@ -21,7 +21,11 @@ export class LockLocalService {
     console.log('initiating local locks...');
     return new Promise<void>((resolve) => {
       this.readLocksFromJson().subscribe((locks) => {
-        this.locks = this.convertSecretAndPasswordToHexadecimal(locks);
+        this.locks = locks;
+        this.locks.forEach((lock: Lock) => {
+          lock = this.convertSecretAndPasswordToHexadecimal(lock);
+          lock = this.addNameToLock(lock, 'OKGSS101');
+        });
         console.log('...initiated local locks!');
         resolve();
       });
@@ -36,7 +40,7 @@ export class LockLocalService {
     return this.locks;
   }
 
-  public async getLock(id: string): Promise<Lock> {
+  public async getLock(id: Readonly<string>): Promise<Lock> {
     if (!this.locks) {
       console.log('waiting');
       await this.initLocks();
@@ -48,18 +52,23 @@ export class LockLocalService {
     return this.http.get<Lock[]>('../../assets/locks/locks.json');
   }
 
-  private convertSecretAndPasswordToHexadecimal(locks: Lock[]): Lock[] {
-    locks.forEach(lock => {
-      lock.secretHexaDecimal = [];
-      lock.passwordHexaDecimal = [];
-      lock.secret.forEach(num => lock.secretHexaDecimal.push(this.convertNumberToHexString(num)));
-      lock.password.forEach(num => lock.passwordHexaDecimal.push(this.convertNumberToHexString(num)));
-    });
-    return locks;
+  private addNameToLock(lock: Readonly<Lock>, name: Readonly<string>) {
+    const lockWithName: Lock = lock;
+    lockWithName.name = name;
+    return lockWithName;
   }
 
-  private convertNumberToHexString(num: number): string {
+  private convertSecretAndPasswordToHexadecimal(lock: Readonly<Lock>): Lock {
+    const lockHex: Lock = lock;
+    lockHex.secretHexaDecimal = [];
+    lockHex.passwordHexaDecimal = [];
+    lockHex.secret.forEach(num => lockHex.secretHexaDecimal.push(this.convertNumberToHexString(num)));
+    lockHex.password.forEach(num => lockHex.passwordHexaDecimal.push(this.convertNumberToHexString(num)));
+    return lockHex;
+  }
+
+  private convertNumberToHexString(num: Readonly<number>): string {
     const hexString = num.toString(16);
-    return '0x' + (hexString.length === 1 ? '0' + num.toString(16) : num.toString(16));
+    return '0x' + (hexString.length === 1 ? '0' + hexString : hexString);
   }
 }
