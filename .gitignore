@@ -16,7 +16,6 @@ $RECYCLE.BIN/
 *.log
 log.txt
 npm-debug.log*
-/src/assets/locks/locks.json
 
 /.idea
 /.ionic
@@ -29,4 +28,5 @@ npm-debug.log*
 /node_modules
 /platforms
 /plugins
+/src/assets/locks
 /www
