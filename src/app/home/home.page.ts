@@ -28,16 +28,13 @@ export class HomePage implements OnInit {
   closeLockStatus: string;
 
   constructor(
-    private lockService: LockService
+    public lockService: LockService
   ) { }
 
   ngOnInit(): void {
-    this.lockService.getLock('AUAS00000014').then((lock) => {
-      this.lock = lock;
-      console.log(this.lock);
-      this.lockService.getLocks().then((locks) => {
-        this.locks = locks;
-      });
+    this.lockService.getLocks().then((locks) => {
+      this.locks = locks;
+      this.lock = locks && locks.length ? locks[0] : null;
     });
   }
 
