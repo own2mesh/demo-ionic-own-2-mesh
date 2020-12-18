@@ -131,6 +131,6 @@ export class HomePage implements OnInit {
   }
 
   scrollToTop() {
-    this.content.scrollToTop();
+    setTimeout(_ => this.content.scrollToTop(750), 250);
   }
 }
