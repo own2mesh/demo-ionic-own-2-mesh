@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { Plugins } from '@capacitor/core';
 import { LockService } from '../services/lock.service';
 import { Lock } from '../models/lock';
+import { IonContent } from '@ionic/angular';
 const { Own2MeshOkLokPlugin } = Plugins;
 
 @Component({
@@ -11,6 +12,8 @@ const { Own2MeshOkLokPlugin } = Plugins;
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
+
+  @ViewChild(IonContent) content: IonContent;
 
   // Example Lock
   public lock: Lock;
@@ -124,5 +127,9 @@ export class HomePage implements OnInit {
 
   select(l: Lock) {
     this.lock = this.locks.find(lock => lock.id === l.id);
+  }
+
+  scrollToTop() {
+    this.content.scrollToTop();
   }
 }
