@@ -9,6 +9,10 @@ import { Lock } from '../models/lock';
  */
 export class LockRemoteService {
 
+  public searchingLocks: boolean; // currently unused => show loading spinner while true
+  public foundLocks: boolean;
+  public message: string;
+
   constructor() { }
 
   public async getLocks(): Promise<Lock[]> {
