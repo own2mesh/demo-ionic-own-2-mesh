@@ -17,6 +17,9 @@ $RECYCLE.BIN/
 log.txt
 npm-debug.log*
 
+#ignore secrets and password of real devices
+/src/assets/locks/locks.json
+
 /.idea
 /.ionic
 /.sass-cache

@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { Plugins } from '@capacitor/core';
 import { LockService } from '../services/lock.service';
 import { Lock } from '../models/lock';
+import { IonContent } from '@ionic/angular';
+import { LockPlugin } from '../models/lock-plugin';
 const { Own2MeshOkLokPlugin } = Plugins;
 
 @Component({
@@ -12,8 +14,11 @@ const { Own2MeshOkLokPlugin } = Plugins;
 })
 export class HomePage implements OnInit {
 
+  @ViewChild(IonContent) content: IonContent;
+
   // Example Lock
-  private lock: Lock;
+  public lock: Lock;
+  public locks: Lock[];
 
   // Status messages
   openLockStatus: string;
@@ -23,13 +28,13 @@ export class HomePage implements OnInit {
   closeLockStatus: string;
 
   constructor(
-    private lockService: LockService
+    public lockService: LockService
   ) { }
 
   ngOnInit(): void {
-    this.lockService.getLock('AUAS00000014').then((lock) => {
-      this.lock = lock;
-      console.log(this.lock);
+    this.lockService.getLocks().then((locks) => {
+      this.locks = locks;
+      this.lock = locks && locks.length ? locks[0] : null;
     });
   }
 
@@ -44,7 +49,7 @@ export class HomePage implements OnInit {
   echo() {
     Own2MeshOkLokPlugin.echo({
       value: 'Hello Own2MeshOkLokPlugin!'
-    }).then((result: { value: string; }) => {
+    }).then((result: LockPlugin) => {
       this.echoStatus = result.value;
     });
   }
@@ -55,13 +60,13 @@ export class HomePage implements OnInit {
    * Result: {"opened":boolean}
    */
   openLock() {
-    console.log('try to open...');
+    console.log('try to open lock ' + this.lock.id + '...');
     Own2MeshOkLokPlugin.open({
-      name: this.lock.id,
+      name: this.lock.name,
       address: this.lock.mac,
       secret: this.lock.secretHexaDecimal,
       pw: this.lock.passwordHexaDecimal
-    }).then((result: { opened: boolean }) => {
+    }).then((result: LockPlugin) => {
       console.log('result', result);
       this.openLockStatus = 'open';
     }, (error: string) => {
@@ -77,10 +82,10 @@ export class HomePage implements OnInit {
    */
   batteryInfo() {
     Own2MeshOkLokPlugin.battery_status({
-      name: this.lock.id,
+      name: this.lock.name,
       address: this.lock.mac,
       secret: this.lock.secretHexaDecimal,
-    }).then(result => {
+    }).then((result: LockPlugin) => {
       this.batteryStatus = result.percentage;
     });
   }
@@ -94,10 +99,10 @@ export class HomePage implements OnInit {
    */
   lockStatus() {
     Own2MeshOkLokPlugin.lock_status({
-      name: this.lock.id,
+      name: this.lock.name,
       address: this.lock.mac,
       secret: this.lock.secretHexaDecimal,
-    }).then(result => {
+    }).then((result: LockPlugin) => {
       this.lockedStatus = result.locked;
     });
   }
@@ -109,12 +114,20 @@ export class HomePage implements OnInit {
    */
   closeLock() {
     Own2MeshOkLokPlugin.close({
-      name: this.lock.id,
+      name: this.lock.name,
       address: this.lock.mac,
       secret: this.lock.secretHexaDecimal,
       pw: this.lock.passwordHexaDecimal
-    }).then(result => {
+    }).then((result: LockPlugin) => {
       this.openLockStatus = result.closed;
     });
+  }
+
+  select(l: Lock) {
+    this.lock = this.locks.find(lock => lock.id === l.id);
+  }
+
+  scrollToTop() {
+    setTimeout(_ => this.content.scrollToTop(750), 250);
   }
 }

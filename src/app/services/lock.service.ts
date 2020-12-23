@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Lock } from '../models/lock';
 import { LockLocalService } from './lock-local.service';
 import { LockRemoteService } from './lock-remote.service';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -9,25 +10,19 @@ import { LockRemoteService } from './lock-remote.service';
 /**
  * get Locks from either local or remote Lock Service
  */
-export class LockService {
-
-  /**
-   * decide wether get local or remote locks
-   */
-  private remote = false;
+export class LockService extends LockLocalService /** LockRemoteService */ {
 
   constructor(
-    private localLockService: LockLocalService,
-    private remoteLockService: LockRemoteService
-  ) { }
+    private httpClient: HttpClient
+  ) {
+    super(httpClient);
+  }
 
   /**
    * get all locks
    */
   public async getLocks(): Promise<Array<Lock>> {
-    return this.remote
-      ? this.remoteLockService.getLocks()
-      : this.localLockService.getLocks();
+    return super.getLocks();
   }
 
   /**
@@ -35,8 +30,6 @@ export class LockService {
    * @param id of the lock
    */
   public async getLock(id: string): Promise<Lock> {
-    return this.remote
-      ? this.remoteLockService.getLock(id)
-      : this.localLockService.getLock(id);
+    return super.getLock(id);
   }
 }
