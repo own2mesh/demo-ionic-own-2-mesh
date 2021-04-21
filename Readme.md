@@ -4,13 +4,15 @@ Demo App for own2mesh capacitor plugin.
 Find the plugin here: https://www.npmjs.com/package/own2mesh-capacitor-plugin-oklok
 #
 ##### Table of Contents  
-* [Install](#install)  
-* [Add a plattform](#add-a-platform)  
-    * [iOS](#ios)  
-    * [Android](#android)
-* [Usage](#usage)
-    * [Import](#import)
-    * [Example lock](#example-lock)
+* [Install](#install) or 
+* [Create own app](#create-your-own)
+    * [Add a plattform](#add-a-platform)  
+        * [iOS](#ios)  
+        * [Android](#android)
+    * [Usage](#usage)
+        * [Import](#import)
+        * [Example lock](#example-lock)
+* [Build](#build-your-ionic-app)
 * [Methods](#methods)
     * [echo()](#echo)
     * [battery_status()](#battery_status)
@@ -29,7 +31,7 @@ You can find the demo app here: https://gitlab.edvsz.hs-osnabrueck.de/own2mesh/d
 > and then follow the instructions of the app!
 * or create your own App
 
-#### Create your own
+## Create your own
 
 > Start with a new ionic app
 > ```
@@ -49,10 +51,10 @@ You can find the demo app here: https://gitlab.edvsz.hs-osnabrueck.de/own2mesh/d
 > ```
 
 #
-#### Add a platform
+### Add a platform
 #
 
-## IOS 
+#### IOS 
 
 > ##### Add ios to your app
 > >*You may need to update your podfile*
@@ -83,7 +85,7 @@ You can find the demo app here: https://gitlab.edvsz.hs-osnabrueck.de/own2mesh/d
 
 
 
-## Android
+#### Android
 
 > ##### Add android to your app
 > `npx cap add android`
@@ -132,24 +134,9 @@ You can find the demo app here: https://gitlab.edvsz.hs-osnabrueck.de/own2mesh/d
 >```
 #
 
-## Build your Ionic app
-> ```
-> ionic build
-> ```
-> Now you are ready to use the own2mesh-capacitor-plugin-oklok
->
-> NOTE: *After you changed something run:*
->
-> ```
-> ionic build
-> npx cap sync
-> npx cap open "platform"
-> ```
+### Usage
 
-
-# Usage
-
-### Import
+#### Import
 > Import the plugin
 > ```typescript
 > import {Plugins} from '@capacitor/core';
@@ -162,7 +149,7 @@ You can find the demo app here: https://gitlab.edvsz.hs-osnabrueck.de/own2mesh/d
 > ```
 #
 
-### Example lock
+#### Example lock
 
 ```typescript
 lockName = {
@@ -183,6 +170,22 @@ lockOKGSS101 = {
     pw: ['0x33', '0x32', '0x31', '0x39', '0x33', '0x37'] 
 }
 ```
+#
+
+# Build your Ionic app
+> ```
+> ionic build
+> ```
+> Now you are ready to use the own2mesh-capacitor-plugin-oklok
+>
+> NOTE: *After you changed something run:*
+>
+> ```
+> ionic build
+> npx cap sync
+> npx cap open "platform"
+> ```
+
 #
 
 # Methods
