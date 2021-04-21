@@ -40,10 +40,10 @@ export class HomePage implements OnInit {
 
   /**
    * Test Methode
-   * 
+   *
    * Call this methode to make sure you can communicate with the plugin.
    * Result should be by success: {"value":"Hello back from own-2-mesh plugin!"}
-   * 
+   *
    * Result: {"value":string}
    */
   echo() {
@@ -56,7 +56,7 @@ export class HomePage implements OnInit {
 
   /**
    * Open lock
-   * 
+   *
    * Result: {"opened":boolean}
    */
   openLock() {
@@ -92,9 +92,9 @@ export class HomePage implements OnInit {
 
   /**
    * Get lock status from lock
-   * 
+   *
    * INFO: Some locks don't support this. They will always return {"locked":false}
-   * 
+   *
    * Result: {"locked":boolean}
    */
   lockStatus() {
@@ -109,7 +109,7 @@ export class HomePage implements OnInit {
 
   /**
    * Close lock
-   * 
+   *
    * Result: {"closed":boolean}
    */
   closeLock() {
