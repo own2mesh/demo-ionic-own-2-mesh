@@ -38,7 +38,7 @@ export class LockLocalService {
       this.processLocks(locks);
     } catch (error) {
       this.processError(error);
-      // setTimeout(_ => resolve(this.initLocks(LOCKFILEEXAMPLE)), 10000); // comment this line in to display a list of example locks 
+      // setTimeout(_ => resolve(this.initLocks(LOCKFILEEXAMPLE)), 10000); // comment this line in to display a list of example locks
     }
   }
 
@@ -155,7 +155,7 @@ export class LockLocalService {
     message += '<p>Kopiere für den Anfang den Inhalt der Datei \'locks.example.json\' in die Datei \'locks.json\' hinein.</p>';
     message += '<p>Wenn du ein Schloss / Schlösser besitzt, füge die Daten in die \'locks.json\' Datei ein.</p>';
     message += '<p>Baue oder starte die App danach neu (ionic serve/build).</p>';
-    message += '<p><i>english</i></p>'
+    message += '<p><i>english</i></p>';
     message += '<p>You have to create a file named \'locks.json\' inside the folder \'/src/assets/locks\'.</p>';
     message += '<p>To get started, copy the contents of the \'locks.example.json\' file into \'locks.json\'.</p>';
     message += '<p>If you have a lock / locks, add the data into the \'locks.json\' file.</p>';

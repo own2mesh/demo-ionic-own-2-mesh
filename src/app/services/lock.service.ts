@@ -13,9 +13,9 @@ import { HttpClient } from '@angular/common/http';
 export class LockService extends LockLocalService /** LockRemoteService */ {
 
   constructor(
-    private httpClient: HttpClient
+    private http: HttpClient
   ) {
-    super(httpClient);
+    super(http);
   }
 
   /**
