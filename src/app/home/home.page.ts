@@ -60,7 +60,7 @@ export class HomePage implements OnInit {
    * Result: {"opened":boolean}
    */
   openLock() {
-    console.log('try to open lock ' + this.lock.id + '...');
+    console.log('try to open lock ' + this.lock.id + '...', this.lock);
     Own2MeshOkLokPlugin.open({
       name: this.lock.name,
       address: this.lock.mac,
