@@ -107,7 +107,7 @@ You can find the demo app here: https://gitlab.edvsz.hs-osnabrueck.de/own2mesh/d
 >
 > The MainActivity.java should look like this:
 > ```java
-> package io.ionic.starter;
+> package de.own2mesh.own2mesh_demo;
 >
 >import android.os.Bundle;
 >

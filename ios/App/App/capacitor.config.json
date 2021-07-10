@@ -1,5 +1,5 @@
 {
-  "appId": "de.own2mesh.own2mesh-demo",
+  "appId": "de.own2mesh.own2mesh_demo",
   "appName": "Own2Mesh Demo",
   "bundledWebRuntime": false,
   "npmClient": "npm",

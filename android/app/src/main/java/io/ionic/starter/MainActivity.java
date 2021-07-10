@@ -1,4 +1,4 @@
-package io.ionic.starter;
+package de.own2mesh.own2mesh_demo;
 
 import android.os.Bundle;
 
