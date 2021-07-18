@@ -50,10 +50,7 @@ export class LockLocalService {
     this.foundLocks = true;
     this.searchingLocks = false;
     this.locks = locks;
-    this.locks.forEach((lock: Lock) => {
-      lock = this.convertSecretAndPasswordToHexadecimal(lock);
-      lock = this.addNameToLock(lock, 'OKGSS101'); // OKGSS101 this is the name all locks should have to connect them via Bluetooth
-    });
+    this.locks.forEach((lock: Lock) => { lock = this.convertSecretAndPasswordToHexadecimal(lock); });
     console.log('...initiated local locks!');
   }
 
@@ -108,18 +105,6 @@ export class LockLocalService {
    */
   private readLocksFromJson(path: string): Promise<Lock[]> {
     return this.httpClient.get<Lock[]>(path).toPromise();
-  }
-
-  /**
-   * add a name to a lock
-   * @param lock lock to modify
-   * @param name name to add
-   * @returns modified lock
-   */
-  private addNameToLock(lock: Readonly<Lock>, name: Readonly<string>): Lock {
-    const lockWithName: Lock = lock;
-    lockWithName.name = name;
-    return lockWithName;
   }
 
   /**

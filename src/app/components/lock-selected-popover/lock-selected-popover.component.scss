@@ -1,0 +1,12 @@
+.container {
+    color: darkgray;
+    margin: 1em;
+    .row {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        .title {
+            font-weight: bold;
+        }
+    }
+}
