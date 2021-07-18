@@ -224,7 +224,7 @@ Result by success: {"value":"Hello back from own-2-mesh plugin!"}
 > ```typescript
 > openLock() {
 >    Own2MeshOkLokPlugin.open({
->       name: lock.name,
+>        name: lock.modelName,
 >        address: lock.address,
 >        secret: lock.secret,
 >        pw: lock.pw
@@ -270,7 +270,7 @@ Result by success: {"value":"Hello back from own-2-mesh plugin!"}
 > ```typescript
 > lockStatus() {
 > Own2MeshOkLokPlugin.lock_status({
->      name: lock.name,
+>      name: lock.modelName,
 >      secret: lock.secret,
 >    }).then(result => {
 >      console.log(result.locked);
