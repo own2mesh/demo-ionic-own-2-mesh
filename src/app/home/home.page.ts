@@ -104,7 +104,11 @@ export class HomePage implements OnInit {
       address: this.lockSelected.mac,
       secret: this.lockSelected.secretHexaDecimal,
     }).then((result: LockPlugin) => {
+      console.log('status - success: ', result);
       this.lockedStatus = result.locked;
+    }).catch(error => {
+      console.log('status - error: ', error);
+      this.lockedStatus = error.locked;
     });
   }
 
