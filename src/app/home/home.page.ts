@@ -1,10 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-
 import { Plugins } from '@capacitor/core';
-import { LockService } from '../services/lock.service';
-import { Lock } from '../models/lock';
 import { IonContent } from '@ionic/angular';
+import { Lock } from '../models/lock';
 import { LockPlugin } from '../models/lock-plugin';
+import { LockService } from '../services/lock.service';
 const { Own2MeshOkLokPlugin } = Plugins;
 
 @Component({
