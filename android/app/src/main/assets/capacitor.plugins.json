@@ -1,0 +1,10 @@
+[
+	{
+		"pkg": "capacitor-oklok-v2",
+		"classpath": "de.own2mesh.capacitor.oklokv2.OKLOKPlugin"
+	},
+	{
+		"pkg": "own2mesh-capacitor-plugin-oklok",
+		"classpath": "de.own2mesh.plugin.oklok.Own2MeshOkLokPlugin"
+	}
+]

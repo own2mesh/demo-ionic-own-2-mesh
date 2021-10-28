@@ -1,13 +1,13 @@
 {
-  "appId": "de.own2mesh.own2mesh_demo",
-  "appName": "Own2Mesh Demo",
-  "bundledWebRuntime": false,
-  "npmClient": "npm",
-  "webDir": "www",
-  "plugins": {
-    "SplashScreen": {
-      "launchShowDuration": 1500
-    }
-  },
-  "cordova": {}
+	"appId": "de.own2mesh.own2mesh_demo",
+	"appName": "Own2Mesh Demo",
+	"bundledWebRuntime": false,
+	"npmClient": "npm",
+	"webDir": "www",
+	"plugins": {
+		"SplashScreen": {
+			"launchShowDuration": 1500
+		}
+	},
+	"cordova": {}
 }
