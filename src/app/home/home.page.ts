@@ -4,14 +4,16 @@ import { IonContent } from '@ionic/angular';
 import { Lock } from '../models/lock';
 import { LockPlugin } from '../models/lock-plugin';
 import { LockService } from '../services/lock.service';
+import { OKLOK, Method, Parameters, Return } from 'capacitor-oklok-v2';
 const { Own2MeshOkLokPlugin } = Plugins;
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  styleUrls: [ 'home.page.scss' ],
 })
-export class HomePage implements OnInit {
+export class HomePage implements OnInit
+{
 
   @ViewChild(IonContent) content: IonContent;
 
@@ -31,10 +33,12 @@ export class HomePage implements OnInit {
     public lockService: LockService
   ) { }
 
-  ngOnInit(): void {
-    this.lockService.getLocks().then((locks) => {
+  ngOnInit(): void
+  {
+    this.lockService.getLocks().then((locks) =>
+    {
       this.locks = locks;
-      this.lockSelected = locks && locks.length ? locks[0] : null;
+      this.lockSelected = locks && locks.length ? locks[ 0 ] : null;
     });
   }
 
@@ -46,10 +50,12 @@ export class HomePage implements OnInit {
    *
    * Result: {"value":string}
    */
-  echo() {
+  echo()
+  {
     Own2MeshOkLokPlugin.echo({
       value: 'Hello Own2MeshOkLokPlugin!'
-    }).then((result: LockPlugin) => {
+    }).then((result: LockPlugin) =>
+    {
       this.echoStatus = result.value;
     });
   }
@@ -59,20 +65,26 @@ export class HomePage implements OnInit {
    *
    * Result: {"opened":boolean}
    */
-  openLock() {
-    console.log('try to open lock ' + this.lockSelected.id + '...', this.lockSelected);
-    Own2MeshOkLokPlugin.open({
-      name: this.lockSelected.modelName,
-      address: this.lockSelected.mac,
-      secret: this.lockSelected.secretHexaDecimal,
-      pw: this.lockSelected.passwordHexaDecimal
-    }).then((result: LockPlugin) => {
-      console.log('result', result);
-      this.openLockStatus = 'open';
-    }, (error: string) => {
-      console.error(error);
-      this.openLockStatus = error;
-    });
+  openLock()
+  {
+    const lock: Lock = this.lockSelected;
+    OKLOK.request({
+      methods: [ Method.OPEN ],
+      parameters: new Parameters(
+        lock.modelName,
+        lock.mac,
+        lock.secret.join(','),
+        lock.password.join(',')
+      )
+    })
+      .then((result: Return) =>
+      {
+        this.openLockStatus = 'Open';
+      })
+      .catch((error) =>
+      {
+        this.openLockStatus = 'Error';
+      });
   }
 
   /**
@@ -80,14 +92,25 @@ export class HomePage implements OnInit {
    * INFO: Some locks don't support this. They will always return {"percentage":0}
    * Result: {"percentage":number}
    */
-  batteryInfo() {
-    Own2MeshOkLokPlugin.battery_status({
-      name: this.lockSelected.modelName,
-      address: this.lockSelected.mac,
-      secret: this.lockSelected.secretHexaDecimal,
-    }).then((result: LockPlugin) => {
-      this.batteryStatus = result.percentage;
-    });
+  batteryInfo()
+  {
+    const lock: Lock = this.lockSelected;
+    OKLOK.request({
+      methods: [ Method.GET_BATTERY ],
+      parameters: new Parameters(
+        lock.modelName,
+        lock.mac,
+        lock.secret.join(',')
+      )
+    })
+      .then((result: Return) =>
+      {
+        this.batteryStatus = String(result.battery);
+      })
+      .catch((error) =>
+      {
+        this.batteryStatus = 'Error';
+      });
   }
 
   /**
@@ -97,18 +120,25 @@ export class HomePage implements OnInit {
    *
    * Result: {"locked":boolean}
    */
-  lockStatus() {
-    Own2MeshOkLokPlugin.lock_status({
-      name: this.lockSelected.modelName,
-      address: this.lockSelected.mac,
-      secret: this.lockSelected.secretHexaDecimal,
-    }).then((result: LockPlugin) => {
-      console.log('status - success: ', result);
-      this.lockedStatus = result.locked;
-    }).catch(error => {
-      console.log('status - error: ', error);
-      this.lockedStatus = error.locked;
-    });
+  lockStatus()
+  {
+    const lock: Lock = this.lockSelected;
+    OKLOK.request({
+      methods: [ Method.GET_STATUS ],
+      parameters: new Parameters(
+        lock.modelName,
+        lock.mac,
+        lock.secret.join(',')
+      )
+    })
+      .then((result: Return) =>
+      {
+        this.lockedStatus = String(result.isLocked);
+      })
+      .catch((error) =>
+      {
+        this.lockedStatus = 'Error';
+      });
   }
 
   /**
@@ -116,22 +146,59 @@ export class HomePage implements OnInit {
    *
    * Result: {"closed":boolean}
    */
-  closeLock() {
-    Own2MeshOkLokPlugin.close({
-      name: this.lockSelected.modelName,
-      address: this.lockSelected.mac,
-      secret: this.lockSelected.secretHexaDecimal,
-      pw: this.lockSelected.passwordHexaDecimal
-    }).then((result: LockPlugin) => {
-      this.openLockStatus = result.closed;
-    });
+  closeLock()
+  {
+    const lock: Lock = this.lockSelected;
+    OKLOK.request({
+      methods: [ Method.CLOSE ],
+      parameters: new Parameters(
+        lock.modelName,
+        lock.mac,
+        lock.secret.join(',')
+      )
+    })
+      .then((result: Return) =>
+      {
+        this.closeLockStatus = 'Closed';
+      })
+      .catch((error) =>
+      {
+        this.closeLockStatus = 'Error';
+      });
   }
 
-  select(l: Lock) {
+  test()
+  {
+    const lock: Lock = this.lockSelected;
+    OKLOK.request({
+      methods: [ Method.OPEN, Method.GET_BATTERY ],
+      parameters: new Parameters(
+        lock.modelName,
+        lock.mac,
+        lock.secret.join(','),
+        lock.password.join(',')
+      )
+    })
+      .then((result: Return) =>
+      {
+        console.warn(result);
+        if (result.battery) {
+          this.batteryStatus = String(result.battery);
+        }
+      })
+      .catch((error) =>
+      {
+        console.error(error);
+      });
+  }
+
+  select(l: Lock)
+  {
     this.lockSelected = this.locks.find(lock => lock.id === l.id);
   }
 
-  scrollToTop() {
+  scrollToTop()
+  {
     setTimeout(_ => this.content.scrollToTop(750), 250);
   }
 }

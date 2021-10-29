@@ -92,6 +92,20 @@
       </ion-card-content>
     </ion-card>
 
+    <!-- lock function TEST -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Test</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-button (click)="test()" expand="block">
+          <ion-icon slot="start" size="large" name="lock-closed-outline"></ion-icon>
+          Test
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+
     <!-- lock list -->
     <ion-list>
       <ion-item *ngFor="let lock of locks" (click)="select(lock); scrollToTop()">
