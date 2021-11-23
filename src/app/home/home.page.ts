@@ -1,137 +1,121 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Plugins } from '@capacitor/core';
-import { IonContent } from '@ionic/angular';
-import { Lock } from '../models/lock';
-import { LockPlugin } from '../models/lock-plugin';
-import { LockService } from '../services/lock.service';
-const { Own2MeshOkLokPlugin } = Plugins;
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {IonContent} from '@ionic/angular';
+import {Lock} from '../models/lock';
+import {LockPlugin} from '../models/lock-plugin';
+import {LockService} from '../services/lock.service';
+import {O2mPluginService} from '../services/o2m-plugin.service';
+
 
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+    selector: 'app-home',
+    templateUrl: 'home.page.html',
+    styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
 
-  @ViewChild(IonContent) content: IonContent;
+    @ViewChild(IonContent) content: IonContent;
 
-  /** selected lock (default first in the list) */
-  public lockSelected: Lock;
-  /** all locks from lock service */
-  public locks: Lock[];
+    /** selected lock (default first in the list) */
+    public lockSelected: Lock;
+    /** all locks from lock service */
+    public locks: Lock[];
 
-  // Status messages
-  openLockStatus: string;
-  echoStatus: string;
-  batteryStatus: string;
-  lockedStatus: string;
-  closeLockStatus: string;
 
-  constructor(
-    public lockService: LockService
-  ) { }
+    // Status messages
+    openLockStatus: string;
+    echoStatus: string;
+    batteryStatus: string;
+    lockedStatus: string;
+    closeLockStatus: string;
 
-  ngOnInit(): void {
-    this.lockService.getLocks().then((locks) => {
-      this.locks = locks;
-      this.lockSelected = locks && locks.length ? locks[0] : null;
-    });
-  }
+    constructor(
+        public lockService: LockService,
+        private own2MeshPluginService: O2mPluginService
+    ) {
+    }
 
-  /**
-   * Test Methode
-   *
-   * Call this methode to make sure you can communicate with the plugin.
-   * Result should be by success: {"value":"Hello back from own-2-mesh plugin!"}
-   *
-   * Result: {"value":string}
-   */
-  echo() {
-    Own2MeshOkLokPlugin.echo({
-      value: 'Hello Own2MeshOkLokPlugin!'
-    }).then((result: LockPlugin) => {
-      this.echoStatus = result.value;
-    });
-  }
+    ngOnInit(): void {
+        this.lockService.getLocks().then((locks) => {
+            this.locks = locks;
+            this.lockSelected = locks && locks.length ? locks[0] : null;
+        });
+    }
 
-  /**
-   * Open lock
-   *
-   * Result: {"opened":boolean}
-   */
-  openLock() {
-    console.log('try to open lock ' + this.lockSelected.id + '...', this.lockSelected);
-    Own2MeshOkLokPlugin.open({
-      name: this.lockSelected.modelName,
-      address: this.lockSelected.mac,
-      secret: this.lockSelected.secretHexaDecimal,
-      pw: this.lockSelected.passwordHexaDecimal
-    }).then((result: LockPlugin) => {
-      console.log('result', result);
-      this.openLockStatus = 'open';
-    }, (error: string) => {
-      console.error(error);
-      this.openLockStatus = error;
-    });
-  }
+    /**
+     * Test Methode
+     *
+     */
+    echo() {
+        this.own2MeshPluginService.echo('Hello Own2MeshOkLokPlugin!')
+            .then((result: LockPlugin) => {
+                this.echoStatus = result.value;
+            }, (error: string) => {
+                console.error(error);
+            });
+    }
 
-  /**
-   * Get battery percentage
-   * INFO: Some locks don't support this. They will always return {"percentage":0}
-   * Result: {"percentage":number}
-   */
-  batteryInfo() {
-    Own2MeshOkLokPlugin.battery_status({
-      name: this.lockSelected.modelName,
-      address: this.lockSelected.mac,
-      secret: this.lockSelected.secretHexaDecimal,
-    }).then((result: LockPlugin) => {
-      this.batteryStatus = result.percentage;
-    });
-  }
+    /**
+     * Open lock
+     */
+    openLock() {
+        this.own2MeshPluginService.openLock(this.lockSelected)
+            .then((result: LockPlugin) => {
+                console.log('result', result);
+                this.openLockStatus = 'open';
+            }, (error: string) => {
+                console.error(error);
+                this.openLockStatus = error;
+            });
+    }
 
-  /**
-   * Get lock status from lock
-   *
-   * INFO: Some locks don't support this. They will always return {"locked":false}
-   *
-   * Result: {"locked":boolean}
-   */
-  lockStatus() {
-    Own2MeshOkLokPlugin.lock_status({
-      name: this.lockSelected.modelName,
-      address: this.lockSelected.mac,
-      secret: this.lockSelected.secretHexaDecimal,
-    }).then((result: LockPlugin) => {
-      console.log('status - success: ', result);
-      this.lockedStatus = result.locked;
-    }).catch(error => {
-      console.log('status - error: ', error);
-      this.lockedStatus = error.locked;
-    });
-  }
+    /**
+     * Get battery percentage
+     */
+    batteryInfo() {
 
-  /**
-   * Close lock
-   *
-   * Result: {"closed":boolean}
-   */
-  closeLock() {
-    Own2MeshOkLokPlugin.close({
-      name: this.lockSelected.modelName,
-      address: this.lockSelected.mac,
-      secret: this.lockSelected.secretHexaDecimal,
-      pw: this.lockSelected.passwordHexaDecimal
-    }).then((result: LockPlugin) => {
-      this.openLockStatus = result.closed;
-    });
-  }
+        this.own2MeshPluginService.batteryInfo(this.lockSelected)
+            .then((result: LockPlugin) => {
+                console.log('result', result);
+                this.batteryStatus = result.percentage;
+            }, (error: string) => {
+                console.error(error);
+                this.openLockStatus = error;
+            });
+    }
 
-  select(l: Lock) {
-    this.lockSelected = this.locks.find(lock => lock.id === l.id);
-  }
+    /**
+     * Get lock status from lock
+     */
+    lockStatus() {
+        this.own2MeshPluginService.lockStatus(this.lockSelected)
+            .then((result: LockPlugin) => {
+                    console.log('status - success: ', result);
+                    this.lockedStatus = result.locked;
+            }, (error: string) => {
+                    console.log('status - error: ', error);
+                    this.lockedStatus = error;
+            });
+    }
 
-  scrollToTop() {
-    setTimeout(_ => this.content.scrollToTop(750), 250);
-  }
+    /**
+     * Close lock
+     */
+    closeLock() {
+        this.own2MeshPluginService.lockStatus(this.lockSelected)
+            .then((result: LockPlugin) => {
+                console.log('status - success: ', result);
+                this.openLockStatus = result.closed;
+            }, (error: string) => {
+                console.log('status - error: ', error);
+                this.openLockStatus = error;
+            });
+    }
+
+    select(l: Lock) {
+        this.lockSelected = this.locks.find(lock => lock.id === l.id);
+    }
+
+    scrollToTop() {
+        setTimeout(_ => this.content.scrollToTop(750), 250);
+    }
 }

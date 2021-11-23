@@ -3,8 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Lock } from '../models/lock';
 import { Observable } from 'rxjs';
 
-const LOCKFILE = '../../assets/locks/locks.json';
-const LOCKFILEEXAMPLE = '../../assets/locks/locks.example.json';
+const LOCKFILE = './assets/locks/locks.json';
+const LOCKFILEEXAMPLE = './assets/locks/locks.example.json';
 
 @Injectable({
   providedIn: 'root'
