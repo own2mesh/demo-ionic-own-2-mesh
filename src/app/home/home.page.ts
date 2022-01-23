@@ -38,7 +38,7 @@ export class HomePage implements OnInit
     this.lockService.getLocks().then((locks) =>
     {
       this.locks = locks;
-      this.lockSelected = locks && locks.length ? locks[ 0 ] : null;
+      this.lockSelected = locks && locks.length ? locks[ 153 ] : null;
     });
   }
 
@@ -83,7 +83,7 @@ export class HomePage implements OnInit
       })
       .catch((error) =>
       {
-        this.openLockStatus = 'Error';
+        this.openLockStatus = error;
       });
   }
 
@@ -109,7 +109,7 @@ export class HomePage implements OnInit
       })
       .catch((error) =>
       {
-        this.batteryStatus = 'Error';
+        this.batteryStatus = error;
       });
   }
 
@@ -137,7 +137,7 @@ export class HomePage implements OnInit
       })
       .catch((error) =>
       {
-        this.lockedStatus = 'Error';
+        this.lockedStatus =  error;
       });
   }
 
@@ -163,7 +163,7 @@ export class HomePage implements OnInit
       })
       .catch((error) =>
       {
-        this.closeLockStatus = 'Error';
+        this.closeLockStatus = error;
       });
   }
 
@@ -182,8 +182,11 @@ export class HomePage implements OnInit
       .then((result: Return) =>
       {
         console.warn(result);
-        if (result.battery) {
+        if (result.battery !== undefined) {
           this.batteryStatus = String(result.battery);
+        }
+        if (result.isLocked !== undefined) {
+          this.lockedStatus = String(result.isLocked);
         }
       })
       .catch((error) =>
