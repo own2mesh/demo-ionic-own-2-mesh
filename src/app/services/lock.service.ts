@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Lock } from '../models/lock';
 import { LockLocalService } from './lock-local.service';
-import { LockRemoteService } from './lock-remote.service';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({

@@ -1,20 +1,18 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Plugins } from '@capacitor/core';
 import { IonContent } from '@ionic/angular';
+import { Method, OKLOK, Parameters, Return } from 'capacitor-oklok-v2';
 import { Lock } from '../models/lock';
 import { LockPlugin } from '../models/lock-plugin';
 import { LockService } from '../services/lock.service';
-import { OKLOK, Method, Parameters, Return } from 'capacitor-oklok-v2';
 const { Own2MeshOkLokPlugin } = Plugins;
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
-  styleUrls: [ 'home.page.scss' ],
+  styleUrls: ['home.page.scss'],
 })
-export class HomePage implements OnInit
-{
-
+export class HomePage implements OnInit {
   @ViewChild(IonContent) content: IonContent;
 
   /** selected lock (default first in the list) */
@@ -33,12 +31,10 @@ export class HomePage implements OnInit
     public lockService: LockService
   ) { }
 
-  ngOnInit(): void
-  {
-    this.lockService.getLocks().then((locks) =>
-    {
+  ngOnInit(): void {
+    this.lockService.getLocks().then((locks) => {
       this.locks = locks;
-      this.lockSelected = locks && locks.length ? locks[ 153 ] : null;
+      this.lockSelected = locks && locks.length ? locks[153] : null;
     });
   }
 
@@ -50,12 +46,10 @@ export class HomePage implements OnInit
    *
    * Result: {"value":string}
    */
-  echo()
-  {
+  echo() {
     Own2MeshOkLokPlugin.echo({
       value: 'Hello Own2MeshOkLokPlugin!'
-    }).then((result: LockPlugin) =>
-    {
+    }).then((result: LockPlugin) => {
       this.echoStatus = result.value;
     });
   }
@@ -65,11 +59,10 @@ export class HomePage implements OnInit
    *
    * Result: {"opened":boolean}
    */
-  openLock()
-  {
+  openLock() {
     const lock: Lock = this.lockSelected;
     OKLOK.request({
-      methods: [ Method.OPEN ],
+      methods: [Method.OPEN],
       parameters: new Parameters(
         lock.modelName,
         lock.mac,
@@ -77,12 +70,10 @@ export class HomePage implements OnInit
         lock.password.join(',')
       )
     })
-      .then((result: Return) =>
-      {
+      .then((result: Return) => {
         this.openLockStatus = 'Open';
       })
-      .catch((error) =>
-      {
+      .catch((error) => {
         this.openLockStatus = error;
       });
   }
@@ -92,23 +83,20 @@ export class HomePage implements OnInit
    * INFO: Some locks don't support this. They will always return {"percentage":0}
    * Result: {"percentage":number}
    */
-  batteryInfo()
-  {
+  batteryInfo() {
     const lock: Lock = this.lockSelected;
     OKLOK.request({
-      methods: [ Method.GET_BATTERY ],
+      methods: [Method.GET_BATTERY],
       parameters: new Parameters(
         lock.modelName,
         lock.mac,
         lock.secret.join(',')
       )
     })
-      .then((result: Return) =>
-      {
+      .then((result: Return) => {
         this.batteryStatus = String(result.battery);
       })
-      .catch((error) =>
-      {
+      .catch((error) => {
         this.batteryStatus = error;
       });
   }
@@ -120,24 +108,21 @@ export class HomePage implements OnInit
    *
    * Result: {"locked":boolean}
    */
-  lockStatus()
-  {
+  lockStatus() {
     const lock: Lock = this.lockSelected;
     OKLOK.request({
-      methods: [ Method.GET_STATUS ],
+      methods: [Method.GET_STATUS],
       parameters: new Parameters(
         lock.modelName,
         lock.mac,
         lock.secret.join(',')
       )
     })
-      .then((result: Return) =>
-      {
+      .then((result: Return) => {
         this.lockedStatus = String(result.isLocked);
       })
-      .catch((error) =>
-      {
-        this.lockedStatus =  error;
+      .catch((error) => {
+        this.lockedStatus = error;
       });
   }
 
@@ -146,32 +131,28 @@ export class HomePage implements OnInit
    *
    * Result: {"closed":boolean}
    */
-  closeLock()
-  {
+  closeLock() {
     const lock: Lock = this.lockSelected;
     OKLOK.request({
-      methods: [ Method.CLOSE ],
+      methods: [Method.CLOSE],
       parameters: new Parameters(
         lock.modelName,
         lock.mac,
         lock.secret.join(',')
       )
     })
-      .then((result: Return) =>
-      {
+      .then((result: Return) => {
         this.closeLockStatus = 'Closed';
       })
-      .catch((error) =>
-      {
+      .catch((error) => {
         this.closeLockStatus = error;
       });
   }
 
-  test()
-  {
+  test() {
     const lock: Lock = this.lockSelected;
     OKLOK.request({
-      methods: [ Method.OPEN, Method.GET_BATTERY ],
+      methods: [Method.OPEN, Method.GET_BATTERY],
       parameters: new Parameters(
         lock.modelName,
         lock.mac,
@@ -179,8 +160,7 @@ export class HomePage implements OnInit
         lock.password.join(',')
       )
     })
-      .then((result: Return) =>
-      {
+      .then((result: Return) => {
         console.warn(result);
         if (result.battery !== undefined) {
           this.batteryStatus = String(result.battery);
@@ -189,19 +169,16 @@ export class HomePage implements OnInit
           this.lockedStatus = String(result.isLocked);
         }
       })
-      .catch((error) =>
-      {
+      .catch((error) => {
         console.error(error);
       });
   }
 
-  select(l: Lock)
-  {
+  select(l: Lock) {
     this.lockSelected = this.locks.find(lock => lock.id === l.id);
   }
 
-  scrollToTop()
-  {
+  scrollToTop() {
     setTimeout(_ => this.content.scrollToTop(750), 250);
   }
 }
