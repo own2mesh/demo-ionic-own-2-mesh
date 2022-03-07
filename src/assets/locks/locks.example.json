@@ -1,0 +1,74 @@
+[
+    {
+        "id": "ExampleLock01",
+        "mac": "AA:BB:CC:DD:EE:FF",
+        "password": [12, 34, 56, 78, 9, 10],
+        "secret": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+    },
+    {
+        "id": "ExampleLock02",
+        "mac": "AA:BB:CC:DD:EE:FF",
+        "password": [12, 34, 56, 78, 9, 10],
+        "secret": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+    },
+    {
+        "id": "ExampleLock03",
+        "mac": "AA:BB:CC:DD:EE:FF",
+        "password": [12, 34, 56, 78, 9, 10],
+        "secret": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+    },
+    {
+        "id": "ExampleLock04",
+        "mac": "AA:BB:CC:DD:EE:FF",
+        "password": [12, 34, 56, 78, 9, 10],
+        "secret": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+    },
+    {
+        "id": "ExampleLock05",
+        "mac": "AA:BB:CC:DD:EE:FF",
+        "password": [12, 34, 56, 78, 9, 10],
+        "secret": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+    },
+    {
+        "id": "ExampleLock06",
+        "mac": "AA:BB:CC:DD:EE:FF",
+        "password": [12, 34, 56, 78, 9, 10],
+        "secret": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+    },
+    {
+        "id": "ExampleLock07",
+        "mac": "AA:BB:CC:DD:EE:FF",
+        "password": [12, 34, 56, 78, 9, 10],
+        "secret": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+    },
+    {
+        "id": "ExampleLock08",
+        "mac": "AA:BB:CC:DD:EE:FF",
+        "password": [12, 34, 56, 78, 9, 10],
+        "secret": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+    },
+    {
+        "id": "ExampleLock09",
+        "mac": "AA:BB:CC:DD:EE:FF",
+        "password": [12, 34, 56, 78, 9, 10],
+        "secret": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+    },
+    {
+        "id": "ExampleLock10",
+        "mac": "AA:BB:CC:DD:EE:FF",
+        "password": [12, 34, 56, 78, 9, 10],
+        "secret": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+    },
+    {
+        "id": "ExampleLock11",
+        "mac": "AA:BB:CC:DD:EE:FF",
+        "password": [12, 34, 56, 78, 9, 10],
+        "secret": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+    },
+    {
+        "id": "ExampleLock12",
+        "mac": "AA:BB:CC:DD:EE:FF",
+        "password": [12, 34, 56, 78, 9, 10],
+        "secret": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+    }
+]
