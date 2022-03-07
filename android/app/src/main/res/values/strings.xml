@@ -1,7 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<resources>
-    <string name="app_name">Own2Mesh Demo</string>
-    <string name="title_activity_main">Own2Mesh Demo</string>
-    <string name="package_name">de.own2mesh.own2mesh_demo</string>
-    <string name="custom_url_scheme">de.own2mesh.own2mesh_demo</string>
-</resources>

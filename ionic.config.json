@@ -1,7 +1,0 @@
-{
-  "name": "Own2Mesh Demo",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular"
-}
